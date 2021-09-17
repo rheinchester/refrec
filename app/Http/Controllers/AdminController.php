@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Workshop;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,8 +27,8 @@ class AdminController extends Controller
     {
         // $users = User::All();
         $users = User::orderBy('name','asc')->get();
-        $response = 'THere are no users';
-        $data = ['users'=> $users,'response' =>  $response];
+        $workshops = Workshop::orderBy('name','asc')->get();
+        $data = ['users'=> $users,'workshops' =>  $workshops];
         return view('admin')->with($data);
     }
 

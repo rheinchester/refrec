@@ -29,16 +29,20 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control"  name="email" value="{{ $user->email }}" disabled autofocus>
                                 </div>
+                                {{-- <div class="col-md-6">
+                                    <input id="email" type="time" class="form-control">
+                                    <input id="email" type="date" class="form-control">
+                                </div> --}}
                             </div>
                             
                             <div class="form-group row">
                                 <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('status') }}</label>
                                 <div class="col-md-6">
-                                    {{Form::select('status', ['Active' => 'Active', 'Inactive' => 'Inactive'], $user->status );}}
+                                    {{Form::select('status', ['Active' => 'Active', 'Inactive' => 'Inactive'], $user->status);}}
                                 </div>
-
+{{-- 
                                 <div class="form-group">
-                                </div>
+                                </div> --}}
                             </div>
 
 
