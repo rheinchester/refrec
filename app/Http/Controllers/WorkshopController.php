@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Workshop;
+use App\Models\Workshop;
 
 class WorkshopController extends Controller
 {
@@ -25,7 +25,7 @@ class WorkshopController extends Controller
     public function create()
     {
         $dayArray = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        return view('workshops.create')->with('days', $dayArray);
+        return view('workshops.create')->with('dayArray', $dayArray);
 
     }
     
@@ -37,12 +37,13 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=>'required',
-            'time'=>'required',
-            'day'=>'required']);
-
+        // $this->validate($request, [
+        //     'name'=>'required']);
         $workshop = new Workshop;
+        $checkName= Workshop::where('name', '=', $request->input('name'))->first();
+        if ($checkName !== null) {//It means theres duplicate
+            return redirect('/admin')->with('Duplicate', 'Workshop already exists');
+        }
         $workshop->name = $request->input('name');
         $workshop->time = $request->input('time');
         $workshop->day = $request->input('day');
@@ -71,7 +72,10 @@ class WorkshopController extends Controller
     public function edit($id)
     {
         $workshop = Workshop::find($id);
-        return view('workshops.edit')->with($workshop);
+        $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', "Saturday", 'Sunday'];
+        $data = ['workshop' => $workshop, 'days' => $days, 'select_day' => $workshop->day];
+        #TODO: why is timevalue not displaying on edit.blade.php
+        return view('workshops.edit')->with($data);
     }
 
     /**
@@ -92,9 +96,16 @@ class WorkshopController extends Controller
         $workshop->time = $request->input('time');
         $workshop->day = $request->input('day');
         $workshop->save();
-        return redirect('/admin')->with('success', 'Workshop created');
+        return redirect('/admin')->with('success', 'Workshop Editted');
     }
 
+
+    public function search(Request $request)
+    {
+        $filter_query = $request->input('query');
+        $workshops  = Workshop::where('name', 'LIKE', '%'.$filter_query.'%')->get();
+        return view('workshops.search_results')->with('workshops', $workshops);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -103,8 +114,9 @@ class WorkshopController extends Controller
      */
     public function destroy($id)
     {
+        #TODO: work on delete alerts
         $workshop = Workshop::find($id);
         $workshop->delete();
-        return redirect('/admin')->with('success', 'Workshop deleted');
+        return redirect('/admin')->with('message', 'Workshop deleted');
     }
 }

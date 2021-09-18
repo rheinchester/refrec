@@ -5,7 +5,7 @@
         <h1>Create Workshops</h1>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('workshop.create') }}">
+            <form method="POST" action="{{ route('workshop.store') }}">
                 @csrf
 
                 <div class="form-group row">
@@ -18,18 +18,23 @@
                 <div class="form-group row">
                     <label for="day" class="col-md-4 col-form-label text-md-right">{{ __('Day') }}</label>
                     <div class="col-md-6">
-                        <input id="day" type="day" class="form-control"  name="day"  autofocus>
+                        <select style="width: 244px" id="day" name="day">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                          </select>      
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Time') }}</label>
-                    <div class="col-md-6">
-                        <input id="time" type="time" name class="form-control">
+                    <div class="col-md-3">
+                        <input id="time" type="time" name="time" class="form-control">
                     </div>
-{{-- 
-                    <div class="form-group">
-                    </div> --}}
                 </div>
 
 
@@ -38,10 +43,11 @@
                         <button type="submit" class="btn btn-primary">
                             {{ __('Submit') }}
                         </button>
-                        @method('PUT')
                     </div>
                 </div>
             </form>
+
+
         </div>
     </div>
 @endsection

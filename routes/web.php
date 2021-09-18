@@ -31,8 +31,4 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 Route::get('/admin/logout', [App\Http\Controllers\Auth\AdminLoginController::class, 'logout'])->name('admin.logout'); 
 
 Route::resources(['workshop' => App\Http\Controllers\WorkshopController::class]);
-// Route::resources([
-//     'photos' => PhotoController::class,
-//     'posts' => PostController::class,
-// ]);
-
+Route::get('search', [App\Http\Controllers\WorkshopController::class, 'search'])->name('search');
