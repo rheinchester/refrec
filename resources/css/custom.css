@@ -9,3 +9,8 @@
     padding: 20px;
     border: 2px solid red;
 }  
+
+DIV.custom-padding {
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle }

@@ -60,8 +60,9 @@ class WorkshopController extends Controller
      */
     public function show($id)
     {
+  
         $workshop = Workshop::find($id);
-        return view('workshops.create')->with($workshop);
+        return view('workshops.show')->with('workshop', $workshop);
     }
 
     /**
@@ -107,7 +108,7 @@ class WorkshopController extends Controller
         $message = '';
         $workshops  = Workshop::where('name', 'LIKE', '%'.$filter_query.'%')->get(); 
         if ((count($workshops)==0) || empty($filter_query)){
-            $message = 'No result matches your ';
+            $message = 'No result matches your query';
             $workshops = [];
         }
         $data = ['workshops'=>$workshops,'message'=> $message];

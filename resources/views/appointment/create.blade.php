@@ -9,7 +9,7 @@
     <hr>
     <h4>Day: {{$workshop->day}}</h4>
     <h4>Time: {{$workshop->time}}</h4>
-    <h5>This appointment cost NGN1000/hour</h5>
+    <h5>This appointment cost NGN1000/hour. How many hours do you want to attend?</h5>
     <h5 class="text-info">{{ session('message') }}</h5>
     <hr>
     <a href="{{route('appointment.store', [$workshop->id])}} " class="btn btn-primary float-right">Submit</a>

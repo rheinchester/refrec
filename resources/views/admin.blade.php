@@ -90,7 +90,7 @@
                                 <form action="{{route('workshop.destroy', $workshop->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <input class="btn btn-danger" type="submit" value="Delete" /> 
+                                    <input  onclick="return confirm('Are you sure?')" class="btn btn-danger" type="submit" value="Delete" /> 
                                 </form>
                             </th> 
                          @endforeach

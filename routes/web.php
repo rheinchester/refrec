@@ -37,3 +37,4 @@ Route::get('/appointment/create/{id}', [App\Http\Controllers\AppointmentControll
 Route::get('/appointment/estimate', [App\Http\Controllers\AppointmentController::class, 'estimateCost'])->name('appointment.estimate');
 Route::get('/appointment/checkout', [App\Http\Controllers\AppointmentController::class, 'checkout'])->name('appointment.checkout');
 Route::get('/appointment/store/{id}', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+Route::get('/appointment/show/{id}', [App\Http\Controllers\AppointmentController::class, 'show'])->name('appointment.show');

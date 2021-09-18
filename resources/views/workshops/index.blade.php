@@ -4,7 +4,10 @@
 <div class="container float-container">
         <div class="col-md-12 float-left">
             <div class="card">
-                <div class="card-header"><h3>{{ __('Workshops') }} <a href="{{route('workshop.create')}}" style="float: right" class="btn btn-primary">Add workshop</a></h3> 
+                <div class="card-header"><h3>{{ __('Workshops') }} 
+                @if (Auth::guard('admin') && Auth::user()->role == 'Admin')
+                    <a href="{{route('workshop.create')}}" style="float: right" class="btn btn-primary">Add workshop</a></h3>     
+                @endif
                 
                 </div>
 

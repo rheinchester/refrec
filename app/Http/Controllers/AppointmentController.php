@@ -34,13 +34,18 @@ class AppointmentController extends Controller
         $appointment->hours = $_SESSION['hours'];
         $appointment->workshop_id = $id;
         $appointment->user_id = auth()->user()->id;
+        $workshop = Workshop::find($id);
         $appointment->save();
         $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
         return view('appointment.checkout')->with($data);
     }
 
-    public function checkout()
+    public function show($id)
     {
-        
+        $appointment = Appointment::find($id);
+        $appointment = auth()->user()->appointment;
+        $workshop = Workshop::find($appointment->workshop_id);
+        $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
+        return view('appointment.show')->with($data);
     }
 }
