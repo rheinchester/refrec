@@ -96,7 +96,7 @@
                          @endforeach
                     </table>
                     @else
-                        <h3>No user registered</h3>
+                        <h3>No workshop created</h3>
                     @endif
                 </div>
             </div>

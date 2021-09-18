@@ -46,7 +46,12 @@ class User extends Authenticatable
     
     public function workshop()
     {
-        $this->hasOne('App\Workshop');
+       return $this->belongsTo('App\Models\Workshop');
+    }
+    
+    public function appointment()
+    {
+       return $this->hasOne('App\Models\Appointment');
     }
 
 }

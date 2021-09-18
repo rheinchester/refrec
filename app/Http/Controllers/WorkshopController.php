@@ -14,7 +14,8 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        // 
+        $workshops = Workshop::all();
+        return view('workshops.index')->with('workshops', $workshops);
     }
 
     /**
@@ -103,8 +104,14 @@ class WorkshopController extends Controller
     public function search(Request $request)
     {
         $filter_query = $request->input('query');
-        $workshops  = Workshop::where('name', 'LIKE', '%'.$filter_query.'%')->get();
-        return view('workshops.search_results')->with('workshops', $workshops);
+        $message = '';
+        $workshops  = Workshop::where('name', 'LIKE', '%'.$filter_query.'%')->get(); 
+        if ((count($workshops)==0) || empty($filter_query)){
+            $message = 'No result matches your ';
+            $workshops = [];
+        }
+        $data = ['workshops'=>$workshops,'message'=> $message];
+        return view('workshops.search_results')->with($data);
     }
     /**
      * Remove the specified resource from storage.

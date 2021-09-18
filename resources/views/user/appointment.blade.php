@@ -54,9 +54,7 @@
                          @endforeach
                     </table>
                     @else
-                        <div class="row justify-content-center">
-                            <h4>No Query matches your search result</h4>
-                        </div>
+                        <h3>No user registered</h3>
                     @endif
                 </div>
             </div>

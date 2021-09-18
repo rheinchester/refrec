@@ -32,3 +32,8 @@ Route::get('/admin/logout', [App\Http\Controllers\Auth\AdminLoginController::cla
 
 Route::resources(['workshop' => App\Http\Controllers\WorkshopController::class]);
 Route::get('search', [App\Http\Controllers\WorkshopController::class, 'search'])->name('search');
+
+Route::get('/appointment/create/{id}', [App\Http\Controllers\AppointmentController::class, 'create'])->name('appointment.create');
+Route::get('/appointment/estimate', [App\Http\Controllers\AppointmentController::class, 'estimateCost'])->name('appointment.estimate');
+Route::get('/appointment/checkout', [App\Http\Controllers\AppointmentController::class, 'checkout'])->name('appointment.checkout');
+Route::get('/appointment/store/{id}', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+// use App\Models\Workshop;
 use Auth;
 
 class LoginController extends Controller
@@ -59,30 +60,4 @@ class LoginController extends Controller
         }
     }
 
-
-    // public function login(Request $request){
-    //     // Validate form data
-        
-    //     $this->validate($request, [
-    //         'email'=>'required|email',
-    //         'password'=>'required|min:6'
-    //     ]);
-    //     $credentials =  ['email' => $request->email, 
-    //     'password' => $request->password];
-    //     if (Auth::attempt($credentials)) {
-    //         return 'home';
-    //         // Authentication passed...
-    //         return redirect()->intended(route('waiting-page'));
-    //     }
-
-    //     if (Auth::guard('web')->attempt($credentials, $request->remember)) {
-    //         return view('Waiting-page');
-    //         return 'status';
-    //         // if (Auth::user()->status == 'Inactive') {
-    //         //     return redirect()->back();
-    //         // }else {
-    //         //     return redirect()->intended(route('home'));
-            // }
-    //     }
-    // }
 }
