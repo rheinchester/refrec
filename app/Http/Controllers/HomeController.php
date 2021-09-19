@@ -27,8 +27,8 @@ class HomeController extends Controller
     { //remember that user->appointment returns zero if empty   
         if (auth()->user()->status == 'Active') {
             $appointment = auth()->user()->appointment;
-            if (!empty($worksop) && !empty($appointment)) {
-                $workshop = Workshop::find($appointment->workshop_id);
+            $workshop = Workshop::find($appointment->workshop_id);
+            if ($workshop && $appointment) {
                 $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
                 return view('home')->with($data);
             }

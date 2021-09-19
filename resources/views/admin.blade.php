@@ -49,7 +49,7 @@
         <div class="col-md-6 float-left">
             <div class="card">
                 <div class="card-header"><h3>{{ __('Workshops') }} <a href="{{route('workshop.create')}}" style="float: right" class="btn btn-primary">Add workshop</a></h3> 
-                
+                {{$duplicate}}
                 </div>
 
                 <div class="card-body">

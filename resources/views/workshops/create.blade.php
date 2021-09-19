@@ -43,7 +43,13 @@
                         <button type="submit" class="btn btn-primary">
                             {{ __('Submit') }}
                         </button>
+                        @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p class="text-danger">{{ $error }}</p>
+                        @endforeach
+                    @endif
                     </div>
+
                 </div>
             </form>
 

@@ -38,12 +38,15 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name'=>'required']);
+        $this->validate($request, [
+            'name'=>'required',
+            'time'=>'required']
+        );
         $workshop = new Workshop;
         $checkName= Workshop::where('name', '=', $request->input('name'))->first();
         if ($checkName !== null) {//It means theres duplicate
-            return redirect('/admin')->with('Duplicate', 'Workshop already exists');
+            // return 'duplicate';
+            return redirect('/admin')->with('duplicate', 'Workshop already exists');
         }
         $workshop->name = $request->input('name');
         $workshop->time = $request->input('time');

@@ -1,4 +1,3 @@
-{{$hrs}}
 @extends('layouts.app')
 
 @section('content')
@@ -12,11 +11,12 @@
     <h5>This appointment cost NGN1000/hour. How many hours do you want to attend?</h5>
     <h5 class="text-info">{{ session('message') }}</h5>
     <hr>
-    <a href="{{route('appointment.store', [$workshop->id])}} " class="btn btn-primary float-right">Submit</a>
+    {{-- <a href="{{route('appointment.store', [$workshop->id])}} " class="btn btn-primary float-right">Submit</a> --}}
     <form method="GET" action="{{ route('appointment.estimate') }}">
         @csrf
         <div class="input-group col-md-4">
-            <input  value ="{{$hrs}}" class="form-control" name="hours" placeholder="Enter hours here"> 
+            <input  value ="{{$hours}}" class="form-control" name="hours" placeholder="Enter hours here"> 
+            <input  value ="{{$workshop->id}}" class="form-control" name="workshop_id" placeholder="Enter hours here" hidden> 
             <button type="submit" class="btn btn-info">Estimate hours</button>
         </div>
        
