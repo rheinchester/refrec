@@ -130,6 +130,6 @@ class WorkshopController extends Controller
     {
         $workshop = Workshop::find($id);
         $workshop->delete();
-        return redirect('/home')->with('message', 'Workshop deleted');
+        return redirect('/admin')->with('message', 'Workshop deleted');
     }
 }
