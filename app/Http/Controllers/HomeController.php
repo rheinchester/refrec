@@ -30,6 +30,7 @@ class HomeController extends Controller
             if (!empty($worksop) && !empty($appointment)) {
                 $workshop = Workshop::find($appointment->workshop_id);
                 $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
+                return view('home')->with($data);
             }
             return view('home');
         }
