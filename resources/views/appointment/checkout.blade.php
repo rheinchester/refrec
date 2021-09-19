@@ -6,7 +6,7 @@
     <h1>Congrats {{Auth::user()->name}}</h1>
     
     <hr>
-    <h5> You have booked {{$workshop->name}} for {{$appointment->hours}} hours. It holds every {{$workshop->day}} by {{$workshop->time}}.</h5>
+    <h5> You have booked  {{$workshop->name}} for {{$appointment->hours}} hours. It holds every {{$workshop->day}} by {{$workshop->time}}.</h5>
     <hr>
     
 @endsection

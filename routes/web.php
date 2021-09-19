@@ -38,3 +38,4 @@ Route::get('/appointment/estimate', [App\Http\Controllers\AppointmentController:
 Route::get('/appointment/checkout', [App\Http\Controllers\AppointmentController::class, 'checkout'])->name('appointment.checkout');
 Route::post('/appointment/store/{id}', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
 Route::get('/appointment/show/{id}', [App\Http\Controllers\AppointmentController::class, 'show'])->name('appointment.show');
+Route::delete('/appointment/destroy/{id}', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.destroy');

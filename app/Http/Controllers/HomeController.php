@@ -25,14 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     { //remember that user->appointment returns zero if empty   
-        if (auth()->user()->status == 'Active') {
-            $appointment = auth()->user()->appointment;
-            $workshop = Workshop::find($appointment->workshop_id);
-            if ($workshop && $appointment) {
+        $user = auth()->user();
+        
+        if ($user->status == 'Active') {
+            if(!$user->appointment){//if there is no appointment return home with nothing
+                // return $user->appointment;
+                return view('home');
+            }else {
+                $appointment = $user->appointment;// don't know if it will work
+                $workshop = Workshop::find($appointment->workshop_id);//if there's an appointment there must be a worshop
                 $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
                 return view('home')->with($data);
             }
-            return view('home');
         }
         else{
             return $this->getWaitingPage();
@@ -44,3 +48,13 @@ class HomeController extends Controller
         return view('waiting-page');
     }
 }
+
+
+// $appointment = auth()->user()->appointment;
+// return empty($appointment);
+// $workshop = Workshop::find($appointment->workshop_id);
+// if ($workshop) {
+//     $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
+//     return view('home')->with($data);
+// }
+// // return'logged in';

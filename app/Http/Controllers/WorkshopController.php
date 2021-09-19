@@ -128,9 +128,8 @@ class WorkshopController extends Controller
      */
     public function destroy($id)
     {
-        #TODO: work on delete alerts
         $workshop = Workshop::find($id);
         $workshop->delete();
-        return redirect('/admin')->with('message', 'Workshop deleted');
+        return redirect('/home')->with('message', 'Workshop deleted');
     }
 }

@@ -5,7 +5,7 @@
     <a href="{{route('home')}}" class="btn btn-primary">Go Back</a>
     <h3>You are booking {{$workshop->name}}</h3>
     <hr>
-    <h5> It  holds every {{$workshop->day}} by {{$workshop->time}}. The total duration is {{$hours}}, therefore {{$message}}.</h5>
+    <h5> It  holds every {{$workshop->day}} by {{$workshop->time}}. The total duration is {{$hours}} hours, therefore {{$message}}.</h5>
     <form  method="POST" action="{{ route('appointment.store', [$workshop->id]) }}">
         @csrf
         <div class="input-group col-md-4">

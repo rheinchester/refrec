@@ -45,9 +45,10 @@ class AppointmentController extends Controller
         $appointment->workshop_id = $id;
         $appointment->user_id = auth()->user()->id;
         $user = User::find(auth()->user()->id);
-        $workshop = Workshop::find(auth()->user()->id);
+        $workshop = Workshop::find($id);
         if (empty($user->appointment)){
             $appointment->save();
+            // $user->appointment_id = $appointment->id;
             $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
             return view('appointment.checkout')->with($data);
         }else {
@@ -62,5 +63,12 @@ class AppointmentController extends Controller
         $workshop = Workshop::find($appointment->workshop_id);
         $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
         return view('appointment.show')->with($data);
+    }
+
+    public function destroy($id)
+    {
+        $appointment = Appointment::find($id);
+        $appointment->delete();
+        return redirect('/home')->with('message', 'Appointment deleted');
     }
 }
