@@ -23,7 +23,14 @@
                             <input class="form-control" name="query" placeholder="Search Workshops by Name"> 
                             <button type="submit" class="btn btn-info">Search</button>
                         </div>
+                               
+                            @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">{{ $error }}</p>
+                            @endforeach
+                        @endif
                     </form>
+                    
                     @if (count($workshops)>0)
                     {{-- <h3>Workshops</h3> --}}
                     <table class="table table-striped">

@@ -49,7 +49,6 @@
         <div class="col-md-6 float-left">
             <div class="card">
                 <div class="card-header"><h3>{{ __('Workshops') }} <a href="{{route('workshop.create')}}" style="float: right" class="btn btn-primary">Add workshop</a></h3> 
-                {{$duplicate}}
                 </div>
 
                 <div class="card-body">
@@ -65,9 +64,15 @@
                             <input class="form-control" name="query" placeholder="Search Workshops by Name"> 
                             <button type="submit" class="btn btn-info">Search</button>
                         </div>
+                            
+                            @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">{{ $error }}</p>
+                            @endforeach
+                        @endif
                     </form>
                     @if (count($workshops)>0)
-                    {{-- <h3>Workshops</h3> --}}
+                    
                     <table class="table table-striped">
                         <tr>
                             <th>Name</th>

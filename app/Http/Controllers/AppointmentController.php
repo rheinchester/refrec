@@ -53,7 +53,6 @@ class AppointmentController extends Controller
         }else {
             return view('appointment.alreadyBooked');
         }
-
     }
 
     public function show($id)

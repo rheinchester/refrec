@@ -17,8 +17,7 @@
                     
                     <div class="panel">
                         <h1>Hello {{Auth::user()->name}}!</h1>
-                        {{-- <h4>Here's your appointment. You can only book one a day.</h4> --}}
-                    {{-- </div> --}}
+
 
                     
                      @if (Auth::user()->appointment && $workshop)

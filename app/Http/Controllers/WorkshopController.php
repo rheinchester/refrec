@@ -38,6 +38,7 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
+        session_start();
         $this->validate($request, [
             'name'=>'required',
             'time'=>'required']
@@ -45,8 +46,9 @@ class WorkshopController extends Controller
         $workshop = new Workshop;
         $checkName= Workshop::where('name', '=', $request->input('name'))->first();
         if ($checkName !== null) {//It means theres duplicate
-            // return 'duplicate';
-            return redirect('/admin')->with('duplicate', 'Workshop already exists');
+            
+            // return redirect('/admin');
+            return view('duplicate')->with('name', $request->input('name'));
         }
         $workshop->name = $request->input('name');
         $workshop->time = $request->input('time');
@@ -108,6 +110,7 @@ class WorkshopController extends Controller
     public function search(Request $request)
     {
         $filter_query = $request->input('query');
+        $this->validate($request, ['query'=>'required']);
         $message = '';
         $workshops  = Workshop::where('name', 'LIKE', '%'.$filter_query.'%')->get(); 
         if ((count($workshops)==0) || empty($filter_query)){
