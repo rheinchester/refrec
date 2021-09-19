@@ -26,8 +26,8 @@ class AdminController extends Controller
     public function index()
     {
         // $users = User::All();
-        $users = User::orderBy('name','asc')->get();
-        $workshops = Workshop::orderBy('name','asc')->get();
+        $users = User::orderBy('name','asc')->paginate(3, ['*'], 'users');
+        $workshops = Workshop::orderBy('name','asc')->paginate(3, ['*'], 'workshops');
         $data = ['users'=> $users,'workshops' =>  $workshops];
         return view('admin')->with($data);
     }

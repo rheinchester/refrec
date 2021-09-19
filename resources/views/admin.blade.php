@@ -34,6 +34,7 @@
                             </th>  
                          @endforeach
                     </table>
+                    {{$users->links("pagination::bootstrap-4")}}
                     @else
                         <h3>No user registered</h3>
                     @endif
@@ -100,6 +101,7 @@
                             </th> 
                          @endforeach
                     </table>
+                        {{$workshops->links("pagination::bootstrap-4")}}
                     @else
                         <h3>No workshop created</h3>
                     @endif

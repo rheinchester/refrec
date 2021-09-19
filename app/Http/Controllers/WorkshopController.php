@@ -65,7 +65,6 @@ class WorkshopController extends Controller
      */
     public function show($id)
     {
-  
         $workshop = Workshop::find($id);
         return view('workshops.show')->with('workshop', $workshop);
     }
