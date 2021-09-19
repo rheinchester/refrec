@@ -27,10 +27,11 @@ class HomeController extends Controller
     { //remember that user->appointment returns zero if empty   
         if (auth()->user()->status == 'Active') {
             $appointment = auth()->user()->appointment;
-            $workshop = Workshop::find($appointment->workshop_id);
-            $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
-            // return($data);
-            return view('home')->with($data);
+            if (!empty($worksop) && !empty($appointment)) {
+                $workshop = Workshop::find($appointment->workshop_id);
+                $data = ['appointment'=>$appointment, 'workshop'=>$workshop];
+            }
+            return view('home');
         }
         else{
             return $this->getWaitingPage();
