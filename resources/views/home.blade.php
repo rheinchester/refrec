@@ -35,7 +35,7 @@
                            
                         </div>
                             </div>
-                            <table class="table table-striped">
+                            <table class="table table-striped table-responsive">
                                 <tr>
                                     <th>Name</th>
                                     <th>Date</th>

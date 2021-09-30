@@ -33,7 +33,7 @@
                     
                     @if (count($workshops)>0)
                     {{-- <h3>Workshops</h3> --}}
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <tr>
                             <th>Name</th>
                             <th>Date</th>

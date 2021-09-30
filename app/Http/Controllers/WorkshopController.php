@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Workshop;
+use App\Models\Appointment;
 
 class WorkshopController extends Controller
 {
@@ -106,6 +107,13 @@ class WorkshopController extends Controller
     }
 
 
+    /**
+     * Update the search for specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request)
     {
         $filter_query = $request->input('query');
@@ -119,6 +127,7 @@ class WorkshopController extends Controller
         $data = ['workshops'=>$workshops,'message'=> $message];
         return view('workshops.search_results')->with($data);
     }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -128,7 +137,9 @@ class WorkshopController extends Controller
     public function destroy($id)
     {
         $workshop = Workshop::find($id);
+        $appointment = Appointment::where('workshop_id', '=', $id)->first();
         $workshop->delete();
+        $appointment->delete();
         return redirect('/admin')->with('message', 'Workshop deleted');
     }
 }

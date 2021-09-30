@@ -16,7 +16,7 @@
                     
                     @if (count($users)>0)
                     {{-- List of user information --}}
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <tr>
                             <th>Name</th>
                             <th>email</th>
@@ -74,7 +74,7 @@
                     </form>
                     @if (count($workshops)>0)
                     
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <tr>
                             <th>Name</th>
                             <th>Date</th>
