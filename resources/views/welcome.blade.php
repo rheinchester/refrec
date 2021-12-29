@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel">
-                            <h1>Astract Project</h1>
+                            <h1>Helloo</h1>
                             {{-- @component('components.who')
                                 
                             @endcomponent --}}
