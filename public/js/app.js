@@ -5321,9 +5321,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  name: "CreateNewPost",
+  mounted: function mounted() {// console.log('Component mounted.')
+  },
+  data: function data() {
+    return {
+      creatingPost: false,
+      errors: null,
+      content: ""
+    };
+  },
+  methods: {
+    creatingPost: function creatingPost() {
+      var _this = this;
+
+      this.creatingPost = true;
+      axios.post('/posts', {
+        content: this.content
+      }).then(function (response) {
+        _this.creatingPost = false;
+      })["catch"](function (error) {
+        _this.creatingPost = false;
+      });
+    }
   }
 });
 
@@ -41707,45 +41742,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("New Post")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Create New Post\n                    "
-              ),
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "content" } }, [
-                  _vm._v(" post content")
-                ]),
-                _vm._v(" "),
-                _c("textarea", {
-                  attrs: {
-                    name: "content",
-                    id: "content",
-                    cols: "30",
-                    rows: "3",
-                    placeholder: "Say something..."
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("New Post")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "content" } }, [
+                _vm._v(" Post content")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.content,
+                    expression: "content"
                   }
-                })
-              ])
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "content",
+                  id: "content",
+                  cols: "30",
+                  rows: "3",
+                  disabled: _vm.creatingPost,
+                  placeholder: "Say something..."
+                },
+                domProps: { value: _vm.content },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.content = $event.target.value
+                  }
+                }
+              })
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer text-end" }, [
+            _vm._v(
+              '"     ">\n                        Post\n                    '
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
