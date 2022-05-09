@@ -6,6 +6,27 @@ use Illuminate\Http\Request;
 use Post;
 class PostsController extends Controller
 {
+
+
+        /**
+     * 
+     * List all posts;
+     */
+    public function list()
+    {
+        $posts = auth()->user()->posts()->orderBy('id', 'desc')->paginate(10);
+
+        if (!$posts->first()) {
+            return response()->json(['message' => 'No more post to return'], 404);
+        }
+
+        return PostResource::collection(resource: $posts);
+    }
+
+    /**
+     * 
+     * Creare new post
+     */
     public function create()
     {
         $this->validate(request: \request(), rules: ['content' => 'required']);
@@ -15,6 +36,7 @@ class PostsController extends Controller
     );
         auth()->user()->posts()->save($post);
 
-        return response()->json($post);
+        // return response()->json($post);
+        return new PostResource(resource: $post);
     }
 }
