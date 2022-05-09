@@ -45,7 +45,10 @@ return [
             'provider' => 'admins',
         ],
     ],
-
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+    ],
     /*
     |--------------------------------------------------------------------------
     | User Providers
