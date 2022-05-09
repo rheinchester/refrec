@@ -68,10 +68,6 @@
                                 <h4 class="col col-md-12">You have no Workshop appointment <a class="btn btn-primary" href="{{route('workshop.index')}}">Schedule One</a></h4>
                                 
                             </div>
-                            <div class="row">
-                               <create-new-post></create-new-post>
-                               <list-all-posts></list-all-posts>
-                            </div>
 
                     @endif 
                 </div>
