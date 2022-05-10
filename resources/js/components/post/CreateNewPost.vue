@@ -22,7 +22,7 @@
                     </div>
                     
                     <div class="card-footer text-end">
-                        <button class="btn btn-primary" @click="creatingPost() :disabled="creatingPost"     ">
+                        <button class="btn btn-primary" @click="createPost()" :disabled="creatingPost">
                             Post
                         </button>
                     </div>
@@ -37,8 +37,8 @@
         name: "CreateNewPost",
         mounted() {
             // console.log('Component mounted.')
-        }
-        , data() {
+        }, 
+        data() {
             return {
                 creatingPost: false,
                 errors: null,
@@ -46,17 +46,17 @@
             }
         },
         methods: {
-            creatingPost(){
+            createPost(){
                 this.creatingPost = true;
-                axios.post('/posts', {content: this.content})
+                axios.post('/api/post', {content: this.content})
                 .then(response=>{
-                    this.creatingPost = false;
+                    this.$root.$emit('post-created', response.data.data);
+                    // this.creatingPost = false;
                 })
                 .catch(error => {
                     this.creatingPost = false;
                 });
             }
         },
-
     }
 </script>

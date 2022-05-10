@@ -5347,14 +5347,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    creatingPost: function creatingPost() {
+    createPost: function createPost() {
       var _this = this;
 
       this.creatingPost = true;
-      axios.post('/posts', {
+      axios.post('/api/post', {
         content: this.content
       }).then(function (response) {
-        _this.creatingPost = false;
+        _this.$root.$emit('post-created', response.data.data); // this.creatingPost = false;
+
       })["catch"](function (error) {
         _this.creatingPost = false;
       });
@@ -5391,9 +5392,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "ListAllPosts",
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    this.$root.$on('post-created', function (post) {
+      _this.posts.push(post);
+    });
+  },
+  data: function data() {
+    return {
+      posts: []
+    };
   }
 });
 
@@ -41786,8 +41799,18 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-footer text-end" }, [
-            _vm._v(
-              '"     ">\n                        Post\n                    '
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { disabled: _vm.creatingPost },
+                on: {
+                  click: function($event) {
+                    return _vm.createPost()
+                  }
+                }
+              },
+              [_vm._v("\n                        Post\n                    ")]
             )
           ])
         ])
@@ -41818,32 +41841,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _vm.posts.length > 0
+          ? _c(
+              "div",
+              _vm._l(_vm.posts, function(post) {
+                return _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-header" }, [_vm._v("Posts")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(post.content) +
+                        "\n                    "
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          : _vm._e()
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

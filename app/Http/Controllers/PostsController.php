@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Post;
+use App\Models\Post;
+use  App\Http\Resources\PostResource;
 class PostsController extends Controller
 {
 
@@ -34,9 +35,11 @@ class PostsController extends Controller
             'content' => \request(key: 'content')
         ]
     );
+        // auth()->user()->posts()->save($post);
         auth()->user()->posts()->save($post);
 
         // return response()->json($post);
         return new PostResource(resource: $post);
     }
 }
+ 

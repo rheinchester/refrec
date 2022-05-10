@@ -2,11 +2,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+                <div v-if="posts.length > 0">
+                    <div class="card" v-for="post in posts">
+                        <div class="card-header">Posts</div>
 
-                    <div class="card-body">
-                        I'm an example component.
+                        <div class="card-body">
+                            {{post.content}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -16,8 +18,16 @@
 
 <script>
     export default {
+        name: "ListAllPosts",
         mounted() {
-            console.log('Component mounted.')
-        }
+           this.$root.$on('post-created', post => {
+               this.posts.push(post)
+           })
+        },
+        data() {
+            return {
+                posts: []
+            }
+        },
     }
 </script>

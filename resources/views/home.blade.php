@@ -70,7 +70,7 @@
                             </div>
                             <div class="row">
                                <create-new-post></create-new-post>
-                               {{-- <list-all-posts></list-all-posts> --}}
+                               <list-all-posts></list-all-posts>
                             </div>
 
                     @endif 
