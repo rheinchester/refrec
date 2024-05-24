@@ -42,8 +42,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
     
     public function workshop()
     {
@@ -58,5 +56,9 @@ class User extends Authenticatable
     {
        return $this->hasMany('App\Models\Post');
     }
-
+    public function references()
+    {
+       return $this->hasMany('App\Models\Reference');
+    }
+ 
 }
