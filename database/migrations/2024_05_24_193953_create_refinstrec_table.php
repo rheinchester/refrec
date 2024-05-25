@@ -17,9 +17,9 @@ class CreateRefinstrecTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('reference_id');
-            $table->unsignedBigInteger('school_id');
+            $table->unsignedBigInteger('institution_id');
             $table->foreign('reference_id')->references('id')->on('references')->onDelete('cascade');
-            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
+            $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
 
         });
     }
