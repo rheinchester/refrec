@@ -74,11 +74,13 @@
                                 <label>Letter</label>
                                 {{-- <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="{{$reference->letter}}">Reference letter is here</textarea> --}}
                                 {{-- <input type="file" class="form-control" placeholder="ZIP Code" value="{{$reference->letter}}" disabled> --}}
-                                <td><a href="{{ route('reference.letter', $reference->id) }}">download</a></td>
+                                <td><a href="{{ route('reference.letter', $reference->id) }}">{{$reference->letter}}</a></td>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info btn-fill pull-right">Mark as Completed</button>
+                    <th><a href="{{ route('reference.edit', $reference->id) }}" class="btn btn-primary">Edit</a></th> 
+                    {{-- <button type="submit" class="btn btn-info btn-fill pull-right">Edit</button> --}}
+                    {{--  <button type="submit" class="btn btn-info btn-fill pull-right">Mark as Read</button> #Implement this on the institution end. Create roles next --}}
                     <div class="clearfix"></div>
                 </form>
             </div>

@@ -16,9 +16,9 @@ class ReferencesController extends Controller
      */
     public function index()
     {
-        $reference = Reference::all();
-        return $reference;
-        // return view('references.index')->with('references', $reference);
+        $references = Reference::all();
+        // return $reference;
+        return view('references.index')->with('references', $references);
     }
 
     /**
@@ -68,7 +68,6 @@ class ReferencesController extends Controller
     {
         // return Gig::find($id);
         if (!Auth::check()){
-            // #TODO Login is not returning to intended page after login. TODO.
             return redirect()->route('login');
         }
         $reference = Reference::find($id);
@@ -79,17 +78,6 @@ class ReferencesController extends Controller
     }
 
 
-    // public function getDownload($letter)// Might put in main controller later
-    // {
-    //     //PDF file is stored under project/public/storage/letters/filename
-    //     $file= public_path(). "/storage"."/".$letter;
-
-    //     $headers = array(
-    //             'Content-Type: application/pdf',
-    //             );
-
-    //     return Response::download($file, 'filename.pdf', $headers);
-    // }
     public function getDownload($id){
         // $path = Reference::where("id", $id)->value("file_path");
         $reference = Reference::find($id);
@@ -100,6 +88,7 @@ class ReferencesController extends Controller
         );
         return Response::download($file, 'filename.pdf', $headers);
       }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -108,7 +97,12 @@ class ReferencesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reference = Reference::find($id);
+        $data = array(
+            'reference' => $reference
+        );
+        // return $reference;
+        return view('references.edit')->with($data);
     }
 
     /**
@@ -120,7 +114,22 @@ class ReferencesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        $reference = Reference::find($id);
+        $this->validate($request, [
+            'letter'=>'nullable|max:1999']);
+        $letter = 'letter';
+        $reference->first_name = $request->input('first_name');
+        $reference->last_name = $request->input('last_name');
+        $reference->qualification = $request->input('qualification');
+        $reference->phone = $request->input('phone');
+        $reference->email = $request->input('email');
+        $reference->organization = $request->input('organization');
+        $reference->letter = Controller::upload_image($request, $letter); 
+        // $reference->user_id = Auth::user()->id;
+        
+        $reference->save();
+        return 'successfully editted';
     }
 
     /**
@@ -136,6 +145,13 @@ class ReferencesController extends Controller
 }
 
 
-// Add institution
-// Enctype
-// download functionality
+// Commence service cycle rn
+    // Create roles for individuals and institution-admin using auth guard.
+        // Institution Home.
+        // Institution Application
+        // Institution generates application link to submit references to.
+        // User goes to the link
+        // User generates User selects references and sends them to an array. (Just like a shopping cart)
+        // Once user is satisfied with the array, he can checkout or submit.
+        // Once submitted, the user and associated references show up on the institution's application page like an order.
+        // Instituion can then download the refernce letters for the user.

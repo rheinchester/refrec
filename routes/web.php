@@ -46,5 +46,8 @@ Route::get('/references/index', [App\Http\Controllers\ReferencesController::clas
 Route::get('/references/create', [App\Http\Controllers\ReferencesController::class, 'create'])->name('reference.create');
 Route::post('/references/store', [App\Http\Controllers\ReferencesController::class, 'store'])->name('reference.store');
 Route::get('/references/show/{id}', [App\Http\Controllers\ReferencesController::class, 'show'])->name('reference.show');
+Route::get('/references/edit/{id}', [App\Http\Controllers\ReferencesController::class, 'edit'])->name('reference.edit');
+Route::post('/references/update/{id}', [App\Http\Controllers\ReferencesController::class, 'update'])->name('reference.update');
 Route::get('/references/download/{id}', [App\Http\Controllers\ReferencesController::class, 'getDownload'])->name('reference.letter');
+Route::delete('/references/destroy/{id}', [App\Http\Controllers\ReferencesController::class, 'destroy'])->name('reference.remove');
 

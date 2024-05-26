@@ -26,27 +26,30 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Letter</th>
-                            <th>Qualification</th>
+                            <th>Letter</th> 
+                            <th>Edit</th> 
+                            <th>Show</th> 
                             {{-- <th>Actions</th>
                             <th></th> --}}
-                            <th colspan='2' class="text-center">Actions</th>
+                            {{-- <th colspan='2' class="text-center">Actions</th> --}}
                         </tr>
 
 
                         @foreach ($references as $reference)
                         
                         <tr>
-                            <th>{{$reference->name}}</th>  
-                            <th>{{$reference->day}}</th> 
-                            <th>{{$reference->time}}</th>
-                            <th class="text-center"><a href="{{route('appointment.create', [$reference->id])}}" class="btn btn-primary">Book Appointment</a> </th> 
-                            <th>
-                                <a href="{{route('workshop.show', [$reference->id])}}" class="btn btn-primary">
+                            {{-- <th>{{$reference->name}}</th>   --}}
+                            <th>{{$reference->first_name}} {{$reference->last_name}}</th>  
+                            <th>{{$reference->email}}</th> 
+                            {{-- <th>
+                                <a href="{{route('reference.edit', [$reference->id])}}" class="btn btn-primary">
                                     Details
                                 </a>
-                            </th> 
+                            </th>  --}}
+                           <th><a href="{{ route('reference.letter', $reference->id) }}">{{$reference->letter}}</a></th> 
+                           <th><a href="{{ route('reference.edit', $reference->id) }}" class="btn btn-primary">Edit</a></th> 
+                           <th><a href="{{ route('reference.show', $reference->id) }}" class="btn btn-primary">Show</a></th> 
+                            {{-- <th><a href="{{route('appointment.create', [$reference->id])}}" class="btn btn-primary">Letter</a> </th>  --}}
                          @endforeach
                     </table>
                     @else
