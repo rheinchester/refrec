@@ -39,3 +39,12 @@ Route::get('/appointment/checkout', [App\Http\Controllers\AppointmentController:
 Route::post('/appointment/store/{id}', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
 Route::get('/appointment/show/{id}', [App\Http\Controllers\AppointmentController::class, 'show'])->name('appointment.show');
 Route::delete('/appointment/destroy/{id}', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.destroy');
+
+
+
+Route::get('/references/index', [App\Http\Controllers\ReferencesController::class, 'index'])->name('references.index');
+Route::get('/references/create', [App\Http\Controllers\ReferencesController::class, 'create'])->name('reference.create');
+Route::post('/references/store', [App\Http\Controllers\ReferencesController::class, 'store'])->name('reference.store');
+Route::get('/references/show/{id}', [App\Http\Controllers\ReferencesController::class, 'show'])->name('reference.show');
+Route::get('/references/download/{id}', [App\Http\Controllers\ReferencesController::class, 'getDownload'])->name('reference.letter');
+

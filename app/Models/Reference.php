@@ -9,6 +9,15 @@ class Reference extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'email',
+        'phone',
+        'letter',
+        'qualification'
+    ];
+
     public function user()
     {
        return $this->belongsTo('App\Models\User');

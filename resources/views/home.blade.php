@@ -65,7 +65,7 @@
                                 </tr>
                             </table>
                             <div class="row">
-                                <h4 class="col col-md-12">You have no Workshop appointment <a class="btn btn-primary" href="{{route('workshop.index')}}">Schedule One</a></h4>
+                                <h4 class="col col-md-12">You have no Workshop Reference <a class="btn btn-primary" href="{{route('workshop.index')}}">Add one</a></h4>
                                 
                             </div>
                 

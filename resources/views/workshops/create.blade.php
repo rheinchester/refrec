@@ -49,7 +49,6 @@
                         @endforeach
                     @endif
                     </div>
-
                 </div>
             </form>
 
