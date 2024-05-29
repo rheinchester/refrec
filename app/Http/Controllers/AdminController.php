@@ -46,4 +46,6 @@ class AdminController extends Controller
         $user->save();
         return view('user-status')->with($data);
     }
+
+
 }

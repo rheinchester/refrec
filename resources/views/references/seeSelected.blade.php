@@ -4,7 +4,7 @@
 <div class="container float-container">
         <div class="col-md-12 float-left">
             <div class="card">
-                <div class="card-header"><h3>{{ __('References') }}                
+                <div class="card-header"><h3>{{ __('References')  }} for {{$userName}}                
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -22,37 +22,18 @@
 
 
                     </form>
-                    @if (count($references)>0)
+                    @if (is_array($references) > 0)
                     {{-- <h3>Workshops</h3> --}}
-                    <form method="POST" action="{{ route('references.getSelected') }}">
+                    <form method="POST" action="{{ route('references.generateLink', Auth::user()->id) }}">
                         @csrf
 
                         <table class="table table-striped">
-                            <tr>
-                                <th>
-
-                                        <a href="{{ route('reference.create') }}" class="btn btn-primary">
-                                            Add Reference
-                                        </a>
-                                        {{-- <input class="form-control" name="query" placeholder="Search Reference by Name">  --}}
-
-                                </th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>
-                                    <div class="input-group">
-                                        {{-- <input class="form-control" name="query" placeholder="Search Reference by Name">  --}}
-                                        <button type="submit" class="btn btn-info">Submit Selected</button>
-                                    </div>
-                                </th>
-                            </tr>
+    
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Letter</th> 
-                                <th>Edit</th> 
+                                {{-- <th>Edit</th>  --}}
                                 <th>Show</th> 
                                 {{-- <th>Actions</th>
                                 <th></th> --}}
@@ -72,13 +53,13 @@
                                     </a>
                                 </th>  --}}
                             <th><a href="{{ route('reference.letter', $reference->id) }}">{{$reference->letter}}</a></th> 
-                            <th><a href="{{ route('reference.edit', $reference->id) }}" class="btn btn-primary">Edit</a></th> 
+                            {{-- <th><a href="{{ route('reference.edit', $reference->id) }}" class="btn btn-primary">Edit</a></th>  --}}
                             <th><a href="{{ route('reference.show', $reference->id) }}" class="btn btn-primary">Show</a></th>
-                            <th>
+                            {{-- <th>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="items[]" type="checkbox" value={{$reference->id}} id="flexCheckDefault">
+                                    <input class="form-check-input" name="items[]" type="checkbox" value={{$reference->id}} id="flexCheckDefault" checked>
                                 </div>
-                            </th>
+                            </th> --}}
 
                                 {{-- <th><a href="{{route('appointment.create', [$reference->id])}}" class="btn btn-primary">Letter</a> </th>  --}}
                             @endforeach

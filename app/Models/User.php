@@ -60,5 +60,10 @@ class User extends Authenticatable
     {
        return $this->hasMany('App\Models\Reference');
     }
+
+    public function sharedrefs()
+    {
+       return $this->hasMany('App\Models\SharedRefs');
+    }
  
 }

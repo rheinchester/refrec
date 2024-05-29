@@ -51,3 +51,13 @@ Route::post('/references/update/{id}', [App\Http\Controllers\ReferencesControlle
 Route::get('/references/download/{id}', [App\Http\Controllers\ReferencesController::class, 'getDownload'])->name('reference.letter');
 Route::delete('/references/destroy/{id}', [App\Http\Controllers\ReferencesController::class, 'destroy'])->name('reference.remove');
 
+
+
+
+
+
+
+Route::post('/references/getSelected', [App\Http\Controllers\ReferencesController::class, 'getSelected'])->name('references.getSelected');
+Route::post('/references/getSelected/{id}', [App\Http\Controllers\ReferencesController::class, 'generateSignedLink'])->name('references.generateLink');
+
+Route::get('/references/seeSelected/{user_id}/{ref_ids}', [App\Http\Controllers\ReferencesController::class, 'SeeSelected'])->name('references.seeSelected')->middleware('signed');

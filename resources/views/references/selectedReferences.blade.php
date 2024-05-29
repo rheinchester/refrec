@@ -22,9 +22,9 @@
 
 
                     </form>
-                    @if (count($references)>0)
+                    @if (is_array($selectedReferences) > 0)
                     {{-- <h3>Workshops</h3> --}}
-                    <form method="POST" action="{{ route('references.getSelected') }}">
+                    <form method="POST" action="{{ route('references.generateLink', Auth::user()->id) }}">
                         @csrf
 
                         <table class="table table-striped">
@@ -44,7 +44,7 @@
                                 <th>
                                     <div class="input-group">
                                         {{-- <input class="form-control" name="query" placeholder="Search Reference by Name">  --}}
-                                        <button type="submit" class="btn btn-info">Submit Selected</button>
+                                        <button type="submit" class="btn btn-info" >Generate Share Link</button>
                                     </div>
                                 </th>
                             </tr>
@@ -60,7 +60,7 @@
                             </tr>
 
 
-                            @foreach ($references as $reference)
+                            @foreach ($selectedReferences as $reference)
                             
                             <tr>
                                 {{-- <th>{{$reference->name}}</th>   --}}
@@ -76,7 +76,7 @@
                             <th><a href="{{ route('reference.show', $reference->id) }}" class="btn btn-primary">Show</a></th>
                             <th>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="items[]" type="checkbox" value={{$reference->id}} id="flexCheckDefault">
+                                    <input class="form-check-input" name="items[]" type="checkbox" value={{$reference->id}} id="flexCheckDefault" checked>
                                 </div>
                             </th>
 
